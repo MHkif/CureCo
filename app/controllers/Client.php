@@ -203,6 +203,7 @@ class Client extends Controller
         $_SESSION[$user . '_id'] = $model->id;
         $_SESSION[$user . '_email'] = $model->email;
         $_SESSION[$user . '_name'] = $model->first_name;
+        // die(print_r($_SESSION));
         redirect("pages");
     }
     public function logout($user)

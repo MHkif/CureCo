@@ -1,6 +1,7 @@
 <?php
 class AdminUser extends UserModel
 {
+
     private $db;
 
 

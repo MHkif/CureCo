@@ -1,5 +1,3 @@
-<!-- Hero section -->
-
 
 <section class="flex pt-12 pb-8" id='searchBar'>
     <form class="container px-10" action="<?php echo URLROOT ?>/medicines/searchMedicine" method="POST">
