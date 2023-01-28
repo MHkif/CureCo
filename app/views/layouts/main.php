@@ -148,32 +148,47 @@
                             <p class="ml-2 lg:ml-4 text-base  font-bold text-dark dark:text-white">WeCare</p>
                         </div>
                     </div>
-                    <form class="space-y-4" action="client/register" method="POST">
+                    <form class="space-y-4" action="client/register" method="POST" enctype="multipart/form-data" id="registerForm">
                         <div class="flex gap-4">
 
                             <div class="w-full">
                                 <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First name</label>
                                 <input type="text" name="first_name" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Loyal" required>
+
+                                <small id="firstSpan"></small>
+
                             </div>
                             <div class="w-full">
                                 <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last name</label>
                                 <input type="text" name="last_name" id="last_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Frank" required>
+                                <small id="lastSpan"></small>
+                            </div>
+                        </div>
 
+                        <div class="w-full">
+                            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                            <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="name@company.com" required>
+                            <small id="emailSpan"></small>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-full">
+                                <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+                                <input type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
+                                <small id="passwordSpan"></small>
+                            </div>
+                            <div class="w-full">
+                                <label for="confirm_password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm Password</label>
+                                <input type="password" name="confirm_password" id="confirm_password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
+                                <small id="confirmSpan"></small>
                             </div>
                         </div>
                         <div>
-                            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
-                            <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="name@company.com" required>
+                            <label for="avatar" class="block mb-2  text-sm font-medium text-gray-900 dark:text-white">Image</label>
+                            <input type="file" name="avatar" id="avatar" class=" mb-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-green-500 focus:border-green-500  block w-full px-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="medicine's image" required>
+                            <span id="avatarSpan"></span>
+
                         </div>
-                        <div>
-                            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-                            <input type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
-                        </div>
-                        <div>
-                            <label for="confirm_password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm Password</label>
-                            <input type="password" name="confirm_password" id="confirm_password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
-                        </div>
-                        <div class="flex justify-between">
+                        <!-- <div class="flex justify-between">
                             <div class="flex items-start">
                                 <div class="flex items-center h-5">
                                     <input id="remember" type="checkbox" value="" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-600 dark:border-gray-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800">
@@ -181,7 +196,7 @@
                                 <label for="remember" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Remember me</label>
                             </div>
                             <a href="#" class="text-sm text-blue-700 hover:underline dark:text-blue-500">Lost Password?</a>
-                        </div>
+                        </div> -->
                         <button type="submit" class="w-full text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Sign up</button>
                         <div class="text-sm font-medium text-gray-500 dark:text-gray-300">
                             Already have an account? <a class="text-green-700" data-modal-hide="register-modal" data-modal-target="Login-modal" data-modal-toggle="Login-modal" class="text-orange-700 hover:underline">Login</a>
@@ -274,64 +289,12 @@
 
 
     <script src="<?php echo URLROOT . './src/js/selectNavbar.js' ?>"></script>
+    <script src="<?php echo URLROOT . './src/js/registerValidate.js' ?>"></script>
+    <script src="<?php echo URLROOT . './src/js/loginValidate.js' ?>"></script>
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.2/flowbite.min.js"></script>
-    <script>
-        function validateEmail(email) {
-            let res = /^[a-zA-Z0-9.!#$%&'+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)$/;
-            return res.test(email)
-        }
 
-        function validatePassword(password) {
-            let res = /^[a-zA-Z0-9]+$/;
-            return res.test(password)
-        }
-
-        function validatenumber(number) {
-            let res = /[-+]?[0-9]*.?[0-9]+/;
-            return res.test(number)
-        }
-
-        // function validatetext(text) {
-        //     if(text!=''){
-        //       return true
-        //     }
-        //     return false
-        // }
-
-
-
-        function validate(event) {
-            let form = document.getElementById('loginForm');
-            let erremail = document.getElementById('emailSpan');
-            let errpassword = document.getElementById('passwordSpan');
-            let email = document.getElementById('email').value;
-            let password = document.getElementById('password').value;
-            event.preventDefault();
-            let bol = true;
-
-            erremail.innerText = "";
-            if (!validateEmail(email)) {
-                erremail.innerText = '"' + email + '"' + "Email is not valid";
-                erremail.style.color = 'red';
-                bol = false;
-            }
-
-            errpassword.innerText = "";
-            if (!validatePassword(password)) {
-                errpassword.innerText = "password is not valid";
-                errpassword.style.color = 'red';
-                bol = false;
-
-            }
-            if (bol) {
-                form.submit();
-            }
-
-
-            return false;
-        }
-    </script>
 
 </body>
 
