@@ -527,11 +527,13 @@ class Admin extends Controller
                 'email' => trim($_POST['email']),
                 'password' => trim($_POST['password']),
                 'confirm_password' => trim($_POST['confirm_password']),
+                'avatar' => $_FILES['avatar']['name'],
                 'fName_err' => '',
                 'lName_err' => '',
                 'email_err' => '',
                 'password_err' => '',
-                'confirm_password_err' => ''
+                'confirm_password_err' => '',
+                'avatar_err' => ''
             ];
 
             // Validate Email
@@ -594,10 +596,12 @@ class Admin extends Controller
                 'email' => '',
                 'password' => '',
                 'confirm_password' => '',
+                'avatar' => '',
                 'name_err' => '',
                 'email_err' => '',
                 'password_err' => '',
-                'confirm_password_err' => ''
+                'confirm_password_err' => '',
+                'avatar_err' => ''
             ];
 
             // Load view
@@ -635,13 +639,13 @@ class Admin extends Controller
 
             // Check for user/email
             if ($this->adminModel->findUserByEmail($data['email'])) {
-                var_dump('User Found');
+                // die('User Found');
                 // Here we have a user but we need to check his password
 
             } else {
                 // User not found
                 $data['email_err'] = 'User Not Found';
-                var_dump('User Not Found Redirecting to pages');
+                // die('User Not Found Redirecting to pages');
                 // here you have to passe data Not Found
                 // redirect('pages');
             }
@@ -654,32 +658,21 @@ class Admin extends Controller
 
                 if ($loggedInUser) {
                     // Create Session
-
                     $this->createUserSession($loggedInUser, "admin");
+                    redirect('pages');
                 } else {
                     $data['password_err'] = 'Password incorrect';
-                    var_dump('Password incorrect');
+                    // var_dump('Password incorrect');
                     // here you have to passe data Password incorrect
-                    // redirect('pages');
+                    redirect('pages');
                 }
             } else {
                 // Load view with errors
                 // $this->view('admin/login', $data);
-                var_dump('Email & Password  incorrect');
-                // redirect('pages/');
+                // var_dump('Email & Password  incorrect');
+                redirect('pages');
                 // Show Modal
             }
-        } else {
-            // Init data
-            $data = [
-                'email' => '',
-                'password' => '',
-                'email_err' => '',
-                'password_err' => '',
-            ];
-
-            // Load view
-            $this->view('pages', $data);
         }
     }
 
@@ -694,7 +687,6 @@ class Admin extends Controller
                 $imageEx = strtolower(end($imageEx));
                 $newImageName = uniqid();
                 $newImageName .= '.' . $imageEx;
-                move_uploaded_file($_FILES['image' . $i]['tmp_name'], './uploads/medicine/' . $filename);
 
                 $data = array(
                     'name' => $_POST['name' . $i],
@@ -706,6 +698,8 @@ class Admin extends Controller
                 );
 
                 if ($this->prodModel->add($data)) {
+                    move_uploaded_file($_FILES['image' . $i]['tmp_name'], './uploads/medicine/' . $filename);
+
                     redirect('admin/medicinePanel');
                 } else {
                     die('Here We Go Again');

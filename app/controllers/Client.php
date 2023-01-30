@@ -13,9 +13,9 @@ class Client extends Controller
 
     public function register()
     {
-    
+
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-           
+
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
             // Init data
@@ -25,12 +25,18 @@ class Client extends Controller
                 'email' => trim($_POST['email']),
                 'password' => trim($_POST['password']),
                 'confirm_password' => trim($_POST['confirm_password']),
+                'avatar' => $_FILES['avatar']['name'],
                 'fName_err' => '',
                 'lName_err' => '',
                 'email_err' => '',
                 'password_err' => '',
-                'confirm_password_err' => ''
+                'confirm_password_err' => '',
+                'avatar_err' => ''
             ];
+
+            // print_r($data);
+            // exit;
+
 
             // Validate Email
             if (empty($data['email'])) {
@@ -67,42 +73,29 @@ class Client extends Controller
             }
 
             // Make sure errors are empty
-            if (empty($data['email_err']) && empty($data['fName_err']) && empty($data['lName_err']) && empty($data['password_err']) && empty($data['confirm_password_err'])) {
+            if (empty($data['email_err']) && empty($data['fName_err']) && empty($data['lName_err']) && empty($data['password_err']) && empty($data['confirm_password_err']) && empty($data['avatar_err'])) {
                 // Validated
 
                 // Hash Password
                 $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
 
+                $SignUpUser =  $this->clientModel->register($data);
+
                 // Register User
-                if ($this->clientModel->register($data)) {
+                if ($SignUpUser) {
                     //   flash('register_success', 'You are registered and can log in');
+                    move_uploaded_file($_FILES['avatar']['tmp_name'], './uploads/client/' . $data['avatar']);
+
                     redirect('pages');
                     // die('User Sign in');
                 } else {
-                    die('Something went wrong');
+                    die('Something went wrong, Not Registred');
                 }
             } else {
                 // Load view with errors
-                die('Errors');
+                die('Error : Some Fields Are Empty ');
                 // $this->view('pages', $data);
             }
-        } else {
-            // Init data
-            $data = [
-                'first_name' => '',
-                'last_name' => '',
-                'email' => '',
-                'password' => '',
-                'confirm_password' => '',
-                'name_err' => '',
-                'email_err' => '',
-                'password_err' => '',
-                'confirm_password_err' => ''
-            ];
-
-            // Load view
-            die('load the view');
-            // $this->view('pages', $data);
         }
     }
 
@@ -156,32 +149,21 @@ class Client extends Controller
 
                 if ($loggedInUser) {
                     // Create Session
-
                     $this->createUserSession($loggedInUser, "client");
+                     redirect('pages');
                 } else {
                     $data['password_err'] = 'Password incorrect';
                     die('Password incorrect');
                     // here you have to passe data Password incorrect
-                    // redirect('pages');
+                    redirect('pages');
                 }
             } else {
                 // Load view with errors
                 // $this->view('admin/login', $data);
-                die('Email & Password  incorrect');
-                // redirect('pages/');
+                die('Fields are empty');
+                redirect('pages');
                 // Show Modal
             }
-        } else {
-            // Init data
-            $data = [
-                'email' => '',
-                'password' => '',
-                'email_err' => '',
-                'password_err' => '',
-            ];
-
-            // Load view
-            $this->view('pages', $data);
         }
     }
 
@@ -196,7 +178,7 @@ class Client extends Controller
         // echo ' Here is An Admin';
         // echo '</pre>';
         // exit;
-        
+
         $_SESSION[$user . '_id'] = $model->id;
         $_SESSION[$user . '_email'] = $model->email;
         $_SESSION[$user . '_name'] = $model->first_name;

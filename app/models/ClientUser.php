@@ -28,7 +28,7 @@ class ClientUser extends UserModel
 
         // Execute
         if ($this->db->execute()) {
-
+            
             return true;
         } else {
             return false;

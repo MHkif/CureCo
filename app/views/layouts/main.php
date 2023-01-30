@@ -100,7 +100,7 @@
                         <img class="cursor-pointer w-8 h-8 sm:w-auto" src="./src/assets/logo.svg" alt="logo" />
                         <p class="ml-2 lg:ml-4 text-base  font-bold text-dark dark:text-white">WeCare</p>
                     </div>
-                    <form class="space-y-4" action="admin/login" method="POST" id="loginForm">
+                    <form class="space-y-4" action="client/login" method="POST" id="loginForm">
                         <div>
                             <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
                             <input type="text" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="name@company.com">
@@ -218,6 +218,7 @@
                 <div class="flex">
                     <img class="cursor-pointer w-8 h-8 sm:w-auto" src="<?php echo URLROOT ?>/src/assets/logo.svg" alt="logo" />
                     <p class="ml-2  text-base lg:text-2xl font-bold text-dark dark:text-white">WeCare</p>
+
                 </div>
                 <div class="hidden md:block">
 
@@ -291,10 +292,7 @@
     <script src="<?php echo URLROOT . './src/js/selectNavbar.js' ?>"></script>
     <script src="<?php echo URLROOT . './src/js/registerValidate.js' ?>"></script>
     <script src="<?php echo URLROOT . './src/js/loginValidate.js' ?>"></script>
-
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.2/flowbite.min.js"></script>
-
 
 </body>
 
